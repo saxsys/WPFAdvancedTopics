@@ -23,7 +23,7 @@
       <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
-    <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Output}" Style="{StaticResource OutputStyle}" />
+    <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Output, PresentationTraceSources.TraceLevel=High}" Style="{StaticResource OutputStyle}" />
     
     <Button Grid.Row="1" Grid.Column="0" Content="/" />
     <Button Grid.Row="1" Grid.Column="1" Content="*" />

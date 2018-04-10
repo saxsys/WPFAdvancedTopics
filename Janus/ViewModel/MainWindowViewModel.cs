@@ -1,4 +1,6 @@
-﻿namespace Janus.ViewModel
+﻿using System.Threading;
+
+namespace Janus.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
