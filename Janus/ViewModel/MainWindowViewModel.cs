@@ -4,14 +4,14 @@ namespace Janus.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private string output;
+        private double output;
 
         public MainWindowViewModel()
         {
-            Output = "0";
+            Output = 0;
         }
 
-        public string Output
+        public double Output
         {
             get
             {

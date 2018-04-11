@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,7 +20,8 @@ namespace Janus
             PresentationTraceSources.Refresh();
             PresentationTraceSources.DataBindingSource.Listeners.Add(new ConsoleTraceListener());
             //PresentationTraceSources.DataBindingSource.Listeners.Add(new DebugTraceListener());
-            PresentationTraceSources.DataBindingSource.Switch.Level = SourceLevels.Warning | SourceLevels.Error;
+            PresentationTraceSources.DataBindingSource.Listeners.Add(new TextWriterTraceListener(Path.GetTempFileName()));
+            PresentationTraceSources.DataBindingSource.Switch.Level = SourceLevels.Information;
             base.OnStartup(e);
         }
     }
