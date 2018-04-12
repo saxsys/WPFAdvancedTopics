@@ -9,21 +9,18 @@ namespace Janus
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var number = value as double?;
+            var data = value as string;
+            if (data == null)
+            {
+                return value;
+            }
 
-            if (number == null)
+            if (!double.TryParse(data, out var number))
             {
                 return Brushes.White;
             }
 
-            if (number >= 0)
-            {
-                return Brushes.Green;
-            }
-            else
-            {
-                return Brushes.Red;
-            }
+            return number >= 0 ? Brushes.Green : Brushes.Red;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

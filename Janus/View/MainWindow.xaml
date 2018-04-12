@@ -27,26 +27,27 @@
     </Grid.RowDefinitions>
 
     <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Output, PresentationTraceSources.TraceLevel=High}" Style="{StaticResource OutputStyle}" Foreground="{Binding Output, Converter={StaticResource OutputConverter}}" />
-    
-    <Button Grid.Row="1" Grid.Column="0" Content="/" />
-    <Button Grid.Row="1" Grid.Column="1" Content="*" />
-    <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Content="-" Style="{StaticResource WideButtonStyle}" />
 
-    <Button Grid.Row="2" Grid.Column="0" Content="7" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="2" Grid.Column="1" Content="8" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="2" Grid.Column="2" Content="9" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Content="+" Style="{StaticResource HighButtonStyle}" />
+    <Button Grid.Row="1" Grid.Column="0" Content="C" Command="{Binding SelectInputCommand}" CommandParameter="C" />
+    <Button Grid.Row="1" Grid.Column="1" Content="/" Command="{Binding SelectInputCommand}" CommandParameter="/" />
+    <Button Grid.Row="1" Grid.Column="2" Content="*" Command="{Binding SelectInputCommand}" CommandParameter="*" />
+    <Button Grid.Row="1" Grid.Column="3" Content="-" Command="{Binding SelectInputCommand}" CommandParameter="-" />
 
-    <Button Grid.Row="3" Grid.Column="0" Content="4" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="3" Grid.Column="1" Content="5" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="3" Grid.Column="2" Content="6" Style="{StaticResource NumberButtonStyle}" />
+    <Button Grid.Row="2" Grid.Column="0" Content="7" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="7" />
+    <Button Grid.Row="2" Grid.Column="1" Content="8" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="8" />
+    <Button Grid.Row="2" Grid.Column="2" Content="9" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="9" />
+    <Button Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Content="+" Style="{StaticResource HighButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="+" />
 
-    <Button Grid.Row="4" Grid.Column="0" Content="1" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="4" Grid.Column="1" Content="2" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="4" Grid.Column="2" Content="3" Style="{StaticResource NumberButtonStyle}" />
-    <Button Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Content="=" Style="{StaticResource HighButtonStyle}" />
+    <Button Grid.Row="3" Grid.Column="0" Content="4" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="4" />
+    <Button Grid.Row="3" Grid.Column="1" Content="5" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="5" />
+    <Button Grid.Row="3" Grid.Column="2" Content="6" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="6" />
 
-    <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="0" Style="{StaticResource NumberWideButtonStyle}" />
-    <Button Grid.Row="5" Grid.Column="2" Content="," />
+    <Button Grid.Row="4" Grid.Column="0" Content="1" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="1" />
+    <Button Grid.Row="4" Grid.Column="1" Content="2" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="2" />
+    <Button Grid.Row="4" Grid.Column="2" Content="3" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="3" />
+    <Button Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Content="=" Style="{StaticResource HighButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="=" />
+
+    <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="0" Style="{StaticResource NumberWideButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="0"  />
+    <Button Grid.Row="5" Grid.Column="2" Content="," Command="{Binding SelectInputCommand}" CommandParameter=","  />
   </Grid>
 </Window>

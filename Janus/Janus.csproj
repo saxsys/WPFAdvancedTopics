@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\MathHelper.cs" />
+    <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="View\OutputConverter.cs" />
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -98,9 +100,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Janus.Style\Janus.Style.csproj">
       <Project>{3c9c81db-501f-4fde-bb6b-46fc86ce7317}</Project>
