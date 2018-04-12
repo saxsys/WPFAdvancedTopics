@@ -8,7 +8,10 @@
         d:DataContext="{d:DesignInstance local:ViewModel/ViewModel, IsDesignTimeCreatable=True}"
         Title="Projekt Janus" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
   <Window.Resources>
-    <local:OutputConverter x:Key="OutputConverter" />
+      <local:OutputConverter x:Key="OutputConverter" />
+        <Style x:Key="NumberWideButtonStyle" TargetType="Button">
+          <Setter Property="Background" Value="Chartreuse" />
+        </Style>
   </Window.Resources>
   <Grid Margin="10">
     <Grid.ColumnDefinitions>
@@ -39,7 +42,15 @@
     <Button Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Content="+" Style="{StaticResource HighButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="+" />
 
     <Button Grid.Row="3" Grid.Column="0" Content="4" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="4" />
-    <Button Grid.Row="3" Grid.Column="1" Content="5" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="5" />
+    <Button Grid.Row="3" Grid.Column="1" Content="5" Command="{Binding SelectInputCommand}" CommandParameter="5">
+      <Button.Style>
+        <Style TargetType="Button">
+          <Setter Property="Background" Value="Fuchsia" />
+          <Setter Property="Foreground" Value="Aqua" />
+          <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+      </Button.Style>
+    </Button>
     <Button Grid.Row="3" Grid.Column="2" Content="6" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="6" />
 
     <Button Grid.Row="4" Grid.Column="0" Content="1" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="1" />
