@@ -11,8 +11,8 @@ namespace Janus
     {
         public MainWindow()
         {
-            InitializeComponent();
             DataContext = new MainWindowViewModel();
+            InitializeComponent();
         }
     }
 }

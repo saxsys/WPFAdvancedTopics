@@ -1,31 +1,54 @@
-﻿namespace Janus.ViewModel
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Threading;
+using Janus.Model;
+
+namespace Janus.ViewModel
 {
-    using System.Windows.Input;
-
-    using Janus.Model;
-
     public class MainWindowViewModel : ViewModelBase
     {
+        private ICommand initializationCommand;
+        private bool isLoading = true;
         private string output;
-
         private ICommand selectInputCommand;
-
+        
         public MainWindowViewModel()
         {
-            this.Output = "0";
+            Output = "0";
+        }
+
+        public bool IsLoading
+        {
+            get => isLoading;
+            set
+            {
+                isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand InitializationCommand
+        {
+            get
+            {
+                if (initializationCommand == null)
+                {
+                    initializationCommand = new RelayCommand(ExecuteInitializeCommand);
+                }
+
+                return initializationCommand;
+            }
         }
 
         public string Output
         {
-            get
-            {
-                return this.output;
-            }
+            get => output;
 
             set
             {
-                this.output = value;
-                this.OnPropertyChanged();
+                output = value;
+                OnPropertyChanged();
             }
         }
 
@@ -33,13 +56,23 @@
         {
             get
             {
-                if (this.selectInputCommand == null)
+                if (selectInputCommand == null)
                 {
-                    this.selectInputCommand = new RelayCommand(this.ExecuteSelectInputCommand);
+                    selectInputCommand = new RelayCommand(ExecuteSelectInputCommand);
                 }
 
-                return this.selectInputCommand;
+                return selectInputCommand;
             }
+        }
+
+        private void ExecuteInitializeCommand(object obj)
+        {
+            IsLoading = true;
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(2000);
+                Dispatcher.CurrentDispatcher.Invoke(() => IsLoading = false);
+            });
         }
 
         private void ExecuteSelectInputCommand(object parameter)
@@ -52,20 +85,20 @@
 
             if (input.Equals("C"))
             {
-                this.Output = "0";
+                Output = "0";
                 return;
             }
 
             double number;
             if (double.TryParse(input, out number))
             {
-                if (this.Output.Equals("0"))
+                if (Output.Equals("0"))
                 {
-                    this.Output = number.ToString();
+                    Output = number.ToString();
                 }
                 else
                 {
-                    this.Output += number.ToString();
+                    Output += number.ToString();
                 }
 
                 return;
@@ -78,24 +111,24 @@
                 case "-":
                 case "+":
                 case "=":
-                    var temp = this.Output;
+                    var temp = Output;
                     MathHelper.CalculateIfSecondOperator(input, ref temp);
-                    this.Output = temp;
+                    Output = temp;
                     break;
                 case ",":
-                    this.AddOneComma();
+                    AddOneComma();
                     break;
             }
         }
 
         private void AddOneComma()
         {
-            if (this.Output.Contains(","))
+            if (Output.Contains(","))
             {
                 return;
             }
 
-            this.Output += ",";
+            Output += ",";
         }
     }
 }

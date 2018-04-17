@@ -8,8 +8,8 @@
     {
         #region Fields
 
-        readonly Action<object> mExecute;
-        readonly Predicate<object> mCanExecute;
+        readonly Action<object> execute;
+        readonly Predicate<object> canExecute;
 
         #endregion // Fields
 
@@ -25,8 +25,8 @@
             if (execute == null)
                 throw new ArgumentNullException(nameof(execute));
 
-            mExecute = execute;
-            mCanExecute = canExecute;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
         #endregion // Constructors
 
@@ -35,7 +35,7 @@
         [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
-            return mCanExecute == null || mCanExecute(parameter);
+            return canExecute == null || canExecute(parameter);
         }
 
         public event EventHandler CanExecuteChanged
@@ -46,7 +46,7 @@
 
         public void Execute(object parameter)
         {
-            mExecute(parameter);
+            execute(parameter);
         }
 
         #endregion // ICommand Members
