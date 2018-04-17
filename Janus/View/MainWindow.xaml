@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Janus"
+        xmlns:behaviors="clr-namespace:Janus.Behaviors"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance local:ViewModel/ViewModel, IsDesignTimeCreatable=True}"
         Title="Projekt Janus" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
   <Window.Resources>
       <local:OutputConverter x:Key="OutputConverter" />
@@ -29,7 +30,11 @@
       <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
-    <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Output, PresentationTraceSources.TraceLevel=High}" Style="{StaticResource OutputStyle}" Foreground="{Binding Output, Converter={StaticResource OutputConverter}}" />
+    <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Output, PresentationTraceSources.TraceLevel=High}" Style="{StaticResource OutputStyle}" Foreground="{Binding Output, Converter={StaticResource OutputConverter}}" >
+        <i:Interaction.Behaviors>
+            <behaviors:TextInputFilterBehavior />
+        </i:Interaction.Behaviors>
+    </TextBox>
 
     <Button Grid.Row="1" Grid.Column="0" Content="C" Command="{Binding SelectInputCommand}" CommandParameter="C" />
     <Button Grid.Row="1" Grid.Column="1" Content="/" Command="{Binding SelectInputCommand}" CommandParameter="/" />

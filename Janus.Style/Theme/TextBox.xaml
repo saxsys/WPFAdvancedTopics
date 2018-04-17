@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Style x:Key="OutputStyle" TargetType="TextBox">
-    <Setter Property="IsReadOnly" Value="True" />
+    <!-- <Setter Property="IsReadOnly" Value="True" /> -->
     <Setter Property="Background" Value="Black" />
     <Setter Property="TextAlignment" Value="Right" />
     <Setter Property="FontSize" Value="24" />
