@@ -1,81 +1,197 @@
-﻿<Window x:Class="Janus.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Janus" 
-        xmlns:behaviors="clr-namespace:Janus.Behaviors"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        mc:Ignorable="d"
-        Title="Projekt Janus" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <local:OutputConverter x:Key="OutputConverter" />
-        <Style x:Key="NumberWideButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="Chartreuse" />
-        </Style>
-    </Window.Resources>
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded" >
-            <i:InvokeCommandAction Command="{Binding InitializationCommand}"></i:InvokeCommandAction>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-    <Grid>
-        <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+﻿<Window
+  x:Class="Janus.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:behaviors="clr-namespace:Janus.Behaviors"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+  xmlns:local="clr-namespace:Janus"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  Title="Projekt Janus"
+  ResizeMode="NoResize"
+  SizeToContent="WidthAndHeight"
+  mc:Ignorable="d">
+  <Window.Resources>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <local:OutputConverter x:Key="OutputConverter" />
+    <Style x:Key="NumberWideButtonStyle" TargetType="{x:Type Button}">
+      <Setter Property="Background" Value="Chartreuse" />
+    </Style>
+  </Window.Resources>
+  <i:Interaction.Triggers>
+    <i:EventTrigger EventName="Loaded">
+      <i:InvokeCommandAction Command="{Binding InitializationCommand}" />
+    </i:EventTrigger>
+  </i:Interaction.Triggers>
+  <Grid>
+    <Grid Margin="10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Output, PresentationTraceSources.TraceLevel=High}" Style="{StaticResource OutputStyle}" Foreground="{Binding Output, Converter={StaticResource OutputConverter}}" >
-            <i:Interaction.Behaviors>
-                <behaviors:TextInputFilterBehavior />
-            </i:Interaction.Behaviors>
-        </TextBox>
+      <TextBox
+        Grid.Row="0"
+        Grid.Column="0"
+        Grid.ColumnSpan="4"
+        behaviors:TextFilterAttachedBehavior.Filter="String"
+        Foreground="{Binding Output, Converter={StaticResource OutputConverter}}"
+        Style="{StaticResource OutputStyle}"
+        Text="{Binding Output, PresentationTraceSources.TraceLevel=High}">
+        <i:Interaction.Behaviors>
+          <behaviors:TextInputFilterBehavior />
+        </i:Interaction.Behaviors>
+      </TextBox>
 
-        <Button Grid.Row="1" Grid.Column="0" Content="C" Command="{Binding SelectInputCommand}" CommandParameter="C" />
-        <Button Grid.Row="1" Grid.Column="1" Content="/" Command="{Binding SelectInputCommand}" CommandParameter="/" />
-        <Button Grid.Row="1" Grid.Column="2" Content="*" Command="{Binding SelectInputCommand}" CommandParameter="*" />
-        <Button Grid.Row="1" Grid.Column="3" Content="-" Command="{Binding SelectInputCommand}" CommandParameter="-" />
+      <Button
+        Grid.Row="1"
+        Grid.Column="0"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="C"
+        Content="C" />
+      <Button
+        Grid.Row="1"
+        Grid.Column="1"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="/"
+        Content="/" />
+      <Button
+        Grid.Row="1"
+        Grid.Column="2"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="*"
+        Content="*" />
+      <Button
+        Grid.Row="1"
+        Grid.Column="3"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="-"
+        Content="-" />
 
-        <Button Grid.Row="2" Grid.Column="0" Content="7" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="7" />
-        <Button Grid.Row="2" Grid.Column="1" Content="8" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="8" />
-        <Button Grid.Row="2" Grid.Column="2" Content="9" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="9" />
-        <Button Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Content="+" Style="{StaticResource HighButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="+" />
+      <Button
+        Grid.Row="2"
+        Grid.Column="0"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="7"
+        Content="7"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="2"
+        Grid.Column="1"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="8"
+        Content="8"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="2"
+        Grid.Column="2"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="9"
+        Content="9"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="2"
+        Grid.RowSpan="2"
+        Grid.Column="3"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="+"
+        Content="+"
+        Style="{StaticResource HighButtonStyle}" />
 
-        <Button Grid.Row="3" Grid.Column="0" Content="4" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="4" />
-        <Button Grid.Row="3" Grid.Column="1" Content="5" Command="{Binding SelectInputCommand}" CommandParameter="5">
-          <Button.Style>
-            <Style TargetType="Button">
-              <Setter Property="Background" Value="Fuchsia" />
-              <Setter Property="Foreground" Value="Aqua" />
-              <Setter Property="FontWeight" Value="Bold" />
-            </Style>
-          </Button.Style>
-        </Button>
-        <Button Grid.Row="3" Grid.Column="2" Content="6" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="6" />
+      <Button
+        Grid.Row="3"
+        Grid.Column="0"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="4"
+        Content="4"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="3"
+        Grid.Column="1"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="5"
+        Content="5">
+        <Button.Style>
+          <Style TargetType="Button">
+            <Setter Property="Background" Value="Fuchsia" />
+            <Setter Property="Foreground" Value="Aqua" />
+            <Setter Property="FontWeight" Value="Bold" />
+          </Style>
+        </Button.Style>
+      </Button>
+      <Button
+        Grid.Row="3"
+        Grid.Column="2"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="6"
+        Content="6"
+        Style="{StaticResource NumberButtonStyle}" />
 
-        <Button Grid.Row="4" Grid.Column="0" Content="1" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="1" />
-        <Button Grid.Row="4" Grid.Column="1" Content="2" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="2" />
-        <Button Grid.Row="4" Grid.Column="2" Content="3" Style="{StaticResource NumberButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="3" />
-        <Button Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Content="=" Style="{StaticResource HighButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="=" />
+      <Button
+        Grid.Row="4"
+        Grid.Column="0"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="1"
+        Content="1"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="4"
+        Grid.Column="1"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="2"
+        Content="2"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="4"
+        Grid.Column="2"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="3"
+        Content="3"
+        Style="{StaticResource NumberButtonStyle}" />
+      <Button
+        Grid.Row="4"
+        Grid.RowSpan="2"
+        Grid.Column="3"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="="
+        Content="="
+        Style="{StaticResource HighButtonStyle}" />
 
-        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="0" Style="{StaticResource NumberWideButtonStyle}" Command="{Binding SelectInputCommand}" CommandParameter="0"  />
-        <Button Grid.Row="5" Grid.Column="2" Content="," Command="{Binding SelectInputCommand}" CommandParameter=","  />
-      </Grid>
-        <Border Background="#99002550" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Foreground="White">Please Wait!!!</TextBlock>
-        </Border>
+      <Button
+        Grid.Row="5"
+        Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter="0"
+        Content="0"
+        Style="{StaticResource NumberWideButtonStyle}" />
+      <Button
+        Grid.Row="5"
+        Grid.Column="2"
+        Command="{Binding SelectInputCommand}"
+        CommandParameter=","
+        Content="," />
     </Grid>
+    <Border Background="#99002550" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+      <TextBlock
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        FontSize="24"
+        FontWeight="Bold"
+        Foreground="White">
+        Please Wait!!!
+      </TextBlock>
+    </Border>
+  </Grid>
 </Window>
 
